@@ -1,11 +1,15 @@
 package com.example.demo.web.controller;
 
 import com.example.demo.business.dto.Portada;
+
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -14,6 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@ActiveProfiles("test")
 public class PortadaControllerTest {
 
     @Autowired
@@ -26,7 +31,7 @@ public class PortadaControllerTest {
 
         mockMvc.perform(post("/api/portada")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"property\": \"value\"}")) // Replace with actual JSON
+                .content("{\"titulo\": \"value\"}")) // Replace with actual JSON
                 .andDo(print())
                 .andExpect(status().isOk());
     }
@@ -37,7 +42,7 @@ public class PortadaControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.property").value("value")); // Replace with actual property
+                .andExpect(jsonPath("$.titulo").value("Portada 1")); // Replace with actual property
     }
 
     @Test
