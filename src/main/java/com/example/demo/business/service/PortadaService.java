@@ -20,9 +20,12 @@ public class PortadaService {
         portadaRepository.save(portada);
     }
 
-    @Transactional(readOnly = true)
+    //@Transactional(readOnly = true)
     public Portada read(long id) {
-        return portadaRepository.findById(id).orElse(null);
+        Portada portada = portadaRepository.findById(id).orElse(null);
+
+
+        return portada;
     }
 
     public void update(Portada portada) {

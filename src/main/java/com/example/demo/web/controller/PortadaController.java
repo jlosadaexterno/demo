@@ -33,7 +33,11 @@ public class PortadaController {
 
     @GetMapping("/{id}")
     public Portada read(@PathVariable("id") long id) {
-        return portadaService.read(id);
+
+        Portada portada2 = portadaService.read(id);
+        portada2.setDescripcion("Pasaba por aquí");
+
+        return portada2;
     }
 
     @PutMapping
